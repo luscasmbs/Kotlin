@@ -1,0 +1,12 @@
+package org.example
+
+fun main(){
+println("Insira um número")
+    var n1 = readln().toIntOrNull() ?:0
+    println("Insira um outro numero")
+
+    var n2 = readln().toIntOrNull() ?:0
+    println("A soma desses valores é: ${n1+n2}")
+
+
+}
