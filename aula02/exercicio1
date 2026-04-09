@@ -1,0 +1,39 @@
+package org.example
+var nome = ""
+var nota = 0
+fun main(){
+println("Bem vindo ao sistema escolar, você quer: \n 1- Cadastrar aluno \n 2- Editar nota \n 3- Ver notas")
+    var e = readln().toInt()
+    if (e == 1){
+cadastrar()
+    } else if(e == 2){
+        editar()
+    } else if(e == 3){
+        ver()
+    }
+
+}
+fun cadastrar(){
+    println("Insira o nome do aluno")
+    nome = readln()
+ println("Aluno cadastrado")
+    main()
+}
+fun editar(){
+    println("Inserir o nome do aluno")
+    var teste = readln()
+    if (teste != nome){
+        println("Esse aluno não está cadastrado no sistema, tente mais tarde")
+        main()
+    } else {
+        println("Qual será a nova nota dele?")
+        nota = readln().toInt()
+        println("Nota alterada com sucesso")
+        main()
+    }
+}
+
+fun ver(){
+    println("O aluno é: $nome e a nota é $nota")
+    main()
+}
