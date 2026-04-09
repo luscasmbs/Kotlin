@@ -1,0 +1,10 @@
+package org.example
+
+fun main(){
+println("A altura do retângulo")
+    var alt = readln().toDouble()
+    println("Agora fale a largura do retângulo")
+    var lg = readln().toDouble()
+    println("A área do retângulo é: ${alt * lg}")
+
+}
