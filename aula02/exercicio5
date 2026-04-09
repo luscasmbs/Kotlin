@@ -1,0 +1,11 @@
+package org.example
+
+fun main(){
+ println("Insira um número")
+    var n1 = readln().toInt()
+    println("Insira outro valor")
+    var n2 = readln().toInt()
+    println("Insira mais outro valor")
+    var n3 = readln().toInt()
+    print("A média aritimética deles é: ${(n1+n2+n3)/3}")
+}
