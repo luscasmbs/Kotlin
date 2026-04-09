@@ -1,0 +1,8 @@
+package org.example
+
+fun main(){
+println("Insira um número inteiro")
+    var numero = readln().toIntOrNull() ?:0
+    var triplo = numero * numero * numero
+    println("O triplo desse valor é: ${numero*numero*numero}")
+}
