@@ -1,4 +1,6 @@
- println("Você quer visualizar exemplos ou atividades? \n 1- Exemplos \n 2- Atividades")
+
+fun main() {
+    println("Você quer visualizar exemplos ou atividades? \n 1- Exemplos \n 2- Atividades")
     var p = readLine()!!.toInt()
     if (p == 1){
         println("Selecione o exemplo")
@@ -92,3 +94,5 @@ fun ex4(){
     }
 
     println(frequencia)
+
+}
