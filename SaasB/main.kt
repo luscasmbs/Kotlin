@@ -1,7 +1,10 @@
+//VARIAVEIS GLOBAIS:
 var nome = ""
 var email = ""
 var senha = ""
-data class usuariosc(var nome: String, var email: String, var senha: String)
+var sl = 1
+//Cadastro dos usuarios:
+data class usuariosc(var id: Int,var nome: String, var email: String, var senha: String)
 var livros = mutableListOf<String>("O magico de oz", "Sitio do pica-pau amarelo", "Harry Potter", "Percy Jackson", "Narnia", "O senhor dos aneis")
 var quant = mutableListOf<Int>(2, 3, 7, 5, 6, 6)
 var uscadast = mutableListOf<usuariosc>()
@@ -29,8 +32,9 @@ fun cadastro(){
     email = readLine()!!
     println("Agora crie sua senha:")
     senha = readLine()!!
-    uscadast.add(usuariosc(nome, email, senha))
+    uscadast.add(usuariosc(sl, nome, email, senha))
     println("Cadastro concluído com sucesso, redirecionando ao inicio")
+    sl++
     main()
 
 }
