@@ -1,35 +1,24 @@
-# Dia 17 - Recursão: Caso Base, Etapa Recursiva e Implementação de Fatorial
+# Dia 18 - Recursão Aplicada: Fibonacci, Análise de Chamadas e Otimização
 
 ## 📚 Conteúdo da Aula
-Neste dia estudamos recursão, um novo modelo de resolução de problemas utilizando funções que chamam a si mesmas.
 
-### Assuntos abordados
-- Conceito de recursão
-- Caso base
-- Etapa recursiva
-- Fluxo de execução recursivo
-- Fatorial recursivo
-- Soma recursiva
-- Fibonacci
-- Comparação entre recursão e loops
-- Stack Overflow
-- Recursão infinita
+Neste dia, continuamos o estudo de recursão, agora aplicando o conceito ao problema clássico da sequência de Fibonacci.
+
+Além de implementar a solução recursiva, também estudamos o custo das chamadas recursivas, a repetição de cálculos e a diferença entre uma solução recursiva e uma solução iterativa otimizada.
 
 ---
 
-## 🧠 Conceitos importantes
+## 🧠 Conceitos estudados
 
-### O que é recursão?
-Recursão acontece quando uma função chama ela mesma para resolver versões menores do problema.
+### Recursão aplicada
+A recursão acontece quando uma função chama ela mesma para resolver partes menores do problema.
 
-## Exercícios internos
-- Fatorial recursivo
-- Soma recursiva
-- Fibonacci
+No caso do Fibonacci, cada número da sequência depende dos dois anteriores
 
 ## Exercícios Beecrowd
-- 1153
 - 1151
 - 1176
-- 1161
 - 1029
+- 1170
+- 2164
+- 1962
