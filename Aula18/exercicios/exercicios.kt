@@ -1,0 +1,60 @@
+fun fatorial(n: Int): Int {
+    if (n == 1) return 1
+    return n * fatorial(n - 1)
+}
+
+fun soma(n: Int): Int {
+    if (n == 0) return 0
+    return n + soma(n - 1)
+}
+
+fun contagem(n: Int) {
+    if (n == 0) return
+    println(n)
+    contagem(n - 1)
+}
+
+fun fibonacci(n: Int): Int {
+    if (n == 0) return 0
+    if (n == 1) return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+fun somaIterativa(n: Int): Int {
+    var soma = 0
+    for (i in 1..n) {
+        soma += i
+    }
+    return soma
+}
+
+fun main() {
+    println("Exercício 1 - Fatorial")
+    println(fatorial(4))
+    println(fatorial(2))
+
+
+    println()
+
+    println("Exercício 2 - Soma de 1 até N")
+    println(soma(10))
+    println(soma(5))
+
+
+    println()
+
+    println("Exercício 3 - Contagem regressiva")
+    println(contagem(10))
+
+
+    println()
+
+    println("Exercício 4 - Fibonacci")
+    println(fibonacci(8))
+
+    println()
+
+    println("Exercício 5 - Tratamento completo")
+    println(somaIterativa(5))
+}
+
