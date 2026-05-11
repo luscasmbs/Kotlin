@@ -15,16 +15,23 @@ fun main(){
             "5 - Remover contato\n" +
             "0 - Sair\n")
     print("escolha uma opção: ")
-    var op = readLine()!!.toInt()
-    when(op){
-        1 ->  adicionarContato()
-        2 ->  buscarContato()
-        3 -> listarContato()
-        4 -> atualizarContato()
-        5 -> removerContato()
-        0 ->  sair()
+    var op = readLine()!!
+    if (op.toIntOrNull() != null) {
+        when(op.toInt()) {
+            1 ->  adicionarContato()
+            2 ->  buscarContato()
+            3 -> listarContato()
+            4 -> atualizarContato()
+            5 -> removerContato()
+            0 ->  sair()
+        }
+    } else if (op.toInt() > 5 || op.toInt()<0){
+        println("ERRO: INSIRA UM NÚMERO VÁLIDO") 
+    } else
+    {
+        println("ERRO: INSIRA UM NÚMERO VÁLIDO")
+        main()
     }
-
 }
 
 fun adicionarContato(){
@@ -37,6 +44,9 @@ fun adicionarContato(){
     println("\nDigite o nome:")
     print("> ")
     var nome = readLine()!!
+    if (nome == ""){
+        println("ERRO: Nome Inválido")
+    }
     println("\nDigite o telefone:")
     print("> ")
     var telefone = readLine()!!
@@ -70,8 +80,6 @@ fun buscarContato(){
         println("ERRO: ID inválido")
         main()
     }
-
-
     var usuariodoid = usuarioscadastrados.find { it.id == id.toInt() }
     if (usuariodoid != null){
         println("\nContato encontrado: \n\n" +
@@ -103,7 +111,40 @@ fun listarContato(){
 
 }
 fun atualizarContato(){
-
+    println("=================================\n " +
+            "ATUALIZAR CONTATO\n" +
+            "=================================\n" +
+            "Digite o ID do contato que você quer atualizar:")
+    print("> ")
+    var id = readLine()!!
+    println("Qual informação você quer atualizar?\n" +
+            "1 - ID\n" +
+            "2 - Nome\n" +
+            "3 - Telefone")
+    print("> ")
+    var escolha = readLine()!!
+    if (escolha.toInt() > 4 || escolha.toInt() < 1){
+        println("ERRO: INSIRA UM NÚMERO VÁLIDO")
+    } else if (escolha.toIntOrNull() == null) {
+        println("ERRO: INSIRA UM VALOR VÁLIDO")
+    } else{
+        if (id.toIntOrNull() == null){
+            println("ERRO: ID inválido")
+            main()
+        }
+        var usuariodoid = usuarioscadastrados.find { it.id == id.toInt() }
+        if (usuariodoid != null){
+            println("\nContato encontrado: \n\n" +
+                    "ID: ${usuariodoid.id}\n" +
+                    "Nome: ${usuariodoid.nome}\n" +
+                    "Telefone: ${usuariodoid.telefone}")
+            main()
+        } else {
+            println("\nContato não encontrado")
+            main()
+        }
+    }
+    
 }
 fun removerContato(){
 
@@ -129,7 +170,5 @@ fun construirt(t: String): String{
         contador++
 
     }
-
     return telefone
 }
-
