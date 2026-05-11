@@ -41,7 +41,7 @@ fun adicionarContato(){
     print("> ")
     var telefone = readLine()!!
     telefone = telefone.filterNot { it == '(' || it == ')' || it == '-' || it == ' ' }
-    if (id.toIntOrNull() == null){
+    if (id.toIntOrNull() == null ||id.toInt() <=0 ){
         println("ERRO: ID inválido")
         main()
     } else if(usuarioscadastrados.any { it.id == id.toInt() }){
@@ -52,6 +52,7 @@ fun adicionarContato(){
         main()
     }
     else{
+        telefone = construirt(telefone)
         usuarioscadastrados.add(usuarios(id.toInt(), nome, telefone))
         println("Contato cadastrado com sucesso!")
         main()
@@ -63,24 +64,45 @@ fun buscarContato(){
             "BUSCAR CONTATO\n" +
             "=================================\n\n" +
             "Digite o ID do contato:")
-            print("> ")
-    var c = 0
-    var id = readLine()!!.toInt()
+    print("> ")
+    var id = readLine()!!
+    if (id.toIntOrNull() == null){
+        println("ERRO: ID inválido")
+        main()
+    }
 
-    if (usuarioscadastrados.any { it.id == id}){
-        while (usuarioscadastrados.any { it.id != id}){
-            c++
-        }
-        println("\n Contato encontrado: \n\n" +
-                "ID: ${id}\n" +
-                "Nome: ${usuarioscadastrados[c].nome}")
+
+    var usuariodoid = usuarioscadastrados.find { it.id == id.toInt() }
+    if (usuariodoid != null){
+        println("\nContato encontrado: \n\n" +
+                "ID: ${usuariodoid.id}\n" +
+                "Nome: ${usuariodoid.nome}\n" +
+                "Telefone: ${usuariodoid.telefone}")
+        main()
+    } else {
+        println("\nContato não encontrado")
+        main()
     }
 
 }
+
 fun listarContato(){
     println("=================================\n " +
             "LISTAR CONTATOS\n" +
-            "=================================\n\n")
+            "=================================\n")
+    var r = usuarioscadastrados.size
+    usuarioscadastrados = usuarioscadastrados.sortedBy { it.id }.toMutableList()
+    var id = 0
+    repeat(r){
+        var usuariodoid = usuarioscadastrados.find { it.id == id}
+        if (usuariodoid != null){
+            println("\nID: ${usuariodoid.id}\n" +
+                    "Nome: ${usuariodoid.nome}\n" +
+                    "Telefone: ${usuariodoid.telefone}\n\n" +
+                    "---------------------------------\n")
+        }
+        id++
+    }
 }
 fun atualizarContato(){
 
@@ -90,5 +112,26 @@ fun removerContato(){
 }
 fun sair(){
 
+}
+fun construirt(t: String): String{
+    var contador = 0
+    var telefone = ""
+    for(c in t){
+        if (contador == 0){
+            telefone+= '('
+        }
+        if (contador == 2){
+            telefone+= ')'
+            telefone+= ' '
+        }
+        if (contador == 7){
+            telefone += '-'
+        }
+        telefone+= c
+        contador++
+
+    }
+
+    return telefone
 }
 
