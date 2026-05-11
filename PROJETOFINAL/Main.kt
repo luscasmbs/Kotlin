@@ -90,19 +90,17 @@ fun listarContato(){
     println("=================================\n " +
             "LISTAR CONTATOS\n" +
             "=================================\n")
-    var r = usuarioscadastrados.size
-    usuarioscadastrados = usuarioscadastrados.sortedBy { it.id }.toMutableList()
-    var id = 0
-    repeat(r){
-        var usuariodoid = usuarioscadastrados.find { it.id == id}
-        if (usuariodoid != null){
-            println("\nID: ${usuariodoid.id}\n" +
-                    "Nome: ${usuariodoid.nome}\n" +
-                    "Telefone: ${usuariodoid.telefone}\n\n" +
-                    "---------------------------------\n")
-        }
-        id++
+    var usuarios = mutableMapOf<Int, usuarios>()
+    for (usuario in usuarioscadastrados){
+        usuarios[usuario.id] = usuario
     }
+    for ((id, usuario) in usuarios.toSortedMap()){
+        println("\nID: ${usuario.id}\n" +
+                "Nome: ${usuario.nome}\n" +
+                "Telefone: ${usuario.telefone}\n" +
+                "---------------------------------")
+    }
+
 }
 fun atualizarContato(){
 
