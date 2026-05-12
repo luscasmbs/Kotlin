@@ -77,6 +77,7 @@ fun adicionarContato(){
         return
     } else if(!nome.all { it.isLetter() || it == ' ' }){
         println("ERRO: O nome deve conter apenas letras")
+        return
     }
 
     println("\nDigite o telefone:")
@@ -235,6 +236,7 @@ fun atualizarContato(){
                 return
             } else if(!novoNome.all { it.isLetter() || it == ' ' }){
                 println("ERRO: O nome deve conter apenas letras")
+                return
             }
             novoNome = nomepadronizado(novoNome)
 
