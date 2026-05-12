@@ -236,6 +236,8 @@ fun atualizarContato(){
             } else if(!novoNome.all { it.isLetter() || it == ' ' }){
                 println("ERRO: O nome deve conter apenas letras")
             }
+            novoNome = nomepadronizado(novoNome)
+
 
             if(usuarioscadastrados.any {it.nome == novoNome}){
                 println("ERRO: Esse nome já está cadastrado.")
