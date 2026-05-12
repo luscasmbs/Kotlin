@@ -183,13 +183,14 @@ fun atualizarContato(){
     print("> ")
     var escolha = readLine()!!
 
-    if (escolha.toInt() > 3 || escolha.toInt() < 1){
-        println("ERRO: Escolha uma opcao entre 1 e 3.")
-        return
-    } else if (escolha.toIntOrNull() == null) {
+    //Garantir que vai ser um número inteiro
+    if (escolha.toIntOrNull() == null) {
         println("ERRO: Digite um valor numerico valido.")
         return
-    } else {
+    } else if (escolha.toInt() > 3 || escolha.toInt() < 1){
+        println("ERRO: Escolha uma opcao entre 1 e 3.")
+        return
+    }  else {
         if (id.toIntOrNull() == null){
             println("ERRO: ID invalido. Digite um numero valido.")
             return
@@ -233,6 +234,25 @@ fun atualizarContato(){
                         "ID: ${usuariodoid?.id}\n" +
                         "Nome: ${usuariodoid?.nome}\n" +
                         "Telefone: ${usuariodoid?.telefone}")
+            }
+        } else if (escolha.toInt() == 3){
+            println("Digite o novo telefone:")
+            print("> ")
+            var novoTelefone = readLine()!!
+            //Vai coletar o telefone novo e vai verificar se já tem um usuário com esse telefone
+            if(usuarioscadastrados.any {it.telefone == novoTelefone}){
+                println("ERRO: Esse telefone ja esta cadastrado.")
+                return
+            } else {
+                //Vai passar o telefone do usuário para esse novo telefone
+                usuariodoid?.telefone = novoTelefone
+                println("Telefone atualizado com sucesso!")
+                println(
+                    "\nContato atualizado: \n\n" +
+                            "ID: ${usuariodoid?.id}\n" +
+                            "Nome: ${usuariodoid?.nome}\n" +
+                            "Telefone: ${usuariodoid?.telefone}"
+                )
             }
         }
     }
