@@ -1,4 +1,6 @@
+
 import kotlin.io.print
+import kotlin.system.exitProcess
 import kotlin.text.toInt
 
 data class usuarios(var id: Int, var nome: String, var telefone: String)
@@ -34,7 +36,7 @@ fun main(){
                     3 -> listarContato()
                     4 -> atualizarContato()
                     5 -> removerContato()
-                    0 ->  { sair(); return } // único ponto de saída do programa
+                    0 -> sair() // único ponto de saída do programa
                 }
             }
         } else {
@@ -83,7 +85,7 @@ fun adicionarContato(){
         println("ERRO: telefone inválido")
         return
     } else {
-        // Aplica a máscara de formatação antes de salvar
+        // Chama a função para o telefone ficar no formato (xx) xxxxx-xxxx
         telefone = construirt(telefone)
 
         // Impede telefones duplicados na lista
@@ -91,6 +93,7 @@ fun adicionarContato(){
             println("ERRO: telefone já cadastrado")
             return
         }
+        nome = nomepadronizado(nome)
 
         // Cria e salva o novo contato
         usuarioscadastrados.add(usuarios(id.toInt(), nome, telefone))
@@ -131,7 +134,7 @@ fun listarContato(){
             "LISTAR CONTATOS\n" +
             "=================================")
 
-    // Constrói um mapa auxiliar para ordenar por ID com toSortedMap()
+    // Constrói um mapa para ordenar por ID com toSortedMap()
     var usuarios = mutableMapOf<Int, usuarios>()
     for (usuario in usuarioscadastrados){
         usuarios[usuario.id] = usuario
@@ -193,7 +196,7 @@ fun atualizarContato(){
             return
         }
 
-        // Atualiza o ID do contato, garantindo que o novo ID seja único e positivo
+        // Atualiza o ID do contato fazendo que o novo ID seja único e positivo
         if (escolha.toInt() == 1){
             println("Digite o novo ID:")
             print("> ")
@@ -215,7 +218,7 @@ fun atualizarContato(){
                     "Nome: ${usuariodoid?.nome}\n" +
                     "Telefone: ${usuariodoid?.telefone}")
 
-            // Atualiza o nome do contato, rejeitando o mesmo valor já salvo
+            // Atualiza o nome do contato e rejeitando o mesmo valor já salvo
         } else if (escolha.toInt() == 2){
             println("Digite o novo nome:")
             print("> ")
@@ -238,15 +241,55 @@ fun atualizarContato(){
 
 // TODO: implementar remoção de contato pelo ID
 fun removerContato(){
+    println("=================================\n " +
+            "EXCLUIR CONTATO\n" +
+            "=================================\n\n" +
+            "Digite o ID do contato que você quer excluir:")
+    print("> ")
+    var id = readLine()!!
 
+    if (id.toIntOrNull() == null){
+        println("ERRO: ID inválido")
+        return
+    }
+    if(id.toIntOrNull()!!< 1){
+        println("ERRO: ID com um número inválido!")
+        return
+    }
+
+    // Procura o contato na lista pelo ID informado
+    var usuariodoid = usuarioscadastrados.find { it.id == id.toInt() }
+
+    if (usuariodoid != null){
+        println("\nContato encontrado: \n\n" +
+                "ID: ${usuariodoid.id}\n" +
+                "Nome: ${usuariodoid.nome}\n" +
+                "Telefone: ${usuariodoid.telefone}\n\n" +
+                "você tem certeza que quer excluir esse contato?(S/N)")
+        var escolha = readLine()!!.lowercase()
+        if (escolha == "s"){
+            usuarioscadastrados.remove(usuariodoid)
+            println("Contato removido com sucesso!")
+            return
+        } else if (escolha == "n") {
+            println("Cancelando a operação...")
+            return
+        } else{
+            println("ERRO: valor inválido")
+            return
+        }
+    } else {
+        println("\nContato não encontrado")
+    }
 }
 
-// TODO: implementar encerramento limpo do programa
 fun sair(){
-
+println("\nEncerrando o sistema...")
+    print("Obrigado por usar o nosso sistema!")
+    exitProcess(0)
 }
 
-// Aplica a máscara de telefone no formato (XX) XXXXX-XXXX a partir de uma string de 11 dígitos
+// faz o telefone ficar no formato (XX) XXXXX-XXXX a partir de uma string de 11 dígitos
 fun construirt(t: String): String{
     var contador = 0
     var telefone = ""
@@ -266,4 +309,21 @@ fun construirt(t: String): String{
         contador++
     }
     return telefone
+}
+
+fun nomepadronizado(nome: String): String{
+    var contador = 0
+    var nomec = ""
+    for(c in nome){
+        if (contador == 0){ //Se for a primeira letra do nome, vai transformar em maíuscula
+            nomec += c.uppercase()
+            contador++
+        } else if (c == ' '){ //se tiver um espaço, a próxima letra após ele vai ser maíuscula
+            nomec += ' '
+            contador = 0
+        } else {
+            nomec += c //vai adicionando as outras letras a frase
+        }
+    }
+    return nomec
 }
