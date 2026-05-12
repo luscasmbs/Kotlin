@@ -238,7 +238,6 @@ fun atualizarContato(){
     }
 }
 
-// TODO: implementar remoção de contato pelo ID
 fun removerContato(){
     println("=================================\n " +
             "EXCLUIR CONTATO\n" +
@@ -246,7 +245,7 @@ fun removerContato(){
             "Digite o ID do contato que voce quer excluir:")
     print("> ")
     var id = readLine()!!
-
+//Vai coletar o id do contato
     if (id.toIntOrNull() == null){
         println("ERRO: ID invalido. Digite um numero valido.")
         return
@@ -258,7 +257,7 @@ fun removerContato(){
 
     // Procura o contato na lista pelo ID informado
     var usuariodoid = usuarioscadastrados.find { it.id == id.toInt() }
-
+//Se tiver o ID existir, ele vai perguntar se você quer excluir esse contato
     if (usuariodoid != null){
         println("\nContato encontrado: \n\n" +
                 "ID: ${usuariodoid.id}\n" +
@@ -267,6 +266,7 @@ fun removerContato(){
                 "Voce tem certeza que quer excluir esse contato? (S/N)")
         var escolha = readLine()!!.lowercase()
         if (escolha == "s"){
+            //Se sim, ele vai remover o contato
             usuarioscadastrados.remove(usuariodoid)
             println("Contato removido com sucesso!")
             return
