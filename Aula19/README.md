@@ -1,20 +1,15 @@
-# Dia 19- Recursão: Caso Base, Etapa Recursiva e Implementação de Fatorial
+# Dia 19- CATÁLOGO DE LIVROS M KOTLIN
 
 ## 📚 Conteúdo da Aula
-Neste dia estudamos recursão, um novo modelo de resolução de problemas utilizando funções que chamam a si mesmas.
+Neste dia estudamos como criar um sistema de catalogo de livros usando dados e algoritimos
 
 ### Assuntos abordados
-- Conceito de recursão
 - Caso base
-- Etapa recursiva
-- Fluxo de execução recursivo
-- Fatorial recursivo
-- Soma recursiva
-- Fibonacci
-- Comparação entre recursão e loops
-- Stack Overflow
-- Recursão infinita
-
+- Estrutur lineares
+- Estruturas associativas
+- Busca
+- Ordenação
+- Validação
 ---
 
 ## 🧠 Conceitos importantes
@@ -28,8 +23,9 @@ Recursão acontece quando uma função chama ela mesma para resolver versões me
 - Fibonacci
 
 ## Exercícios Beecrowd
-- 1153
-- 1151
-- 1176
-- 1161
-- 1029
+- 1165
+- 1114
+- 1256
+- 1022
+- 1261
+- 2482
