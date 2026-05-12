@@ -1,4 +1,4 @@
-# Dia 17 - Recursão: Caso Base, Etapa Recursiva e Implementação de Fatorial
+# Dia 19- Recursão: Caso Base, Etapa Recursiva e Implementação de Fatorial
 
 ## 📚 Conteúdo da Aula
 Neste dia estudamos recursão, um novo modelo de resolução de problemas utilizando funções que chamam a si mesmas.
