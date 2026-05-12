@@ -262,11 +262,11 @@ fun atualizarContato(){
                 println("ERRO: Telefone inválido. Digite um telefone com 11 dígitos.")
                 return
             }
+            novoTelefone = construirt(novoTelefone)
             if(usuarioscadastrados.any {it.telefone == novoTelefone}){
                 println("ERRO: Esse telefone já está cadastrado.")
                 return
             } else {
-                novoTelefone = construirt(novoTelefone)
                 usuariodoid?.telefone = novoTelefone
                 println("Telefone atualizado com sucesso!")
                 println(
