@@ -283,7 +283,7 @@ fun removerContato(){
 }
 
 fun sair(){
-println("\nEncerrando o sistema...")
+    println("\nEncerrando o sistema...")
     print("Obrigado por usar o nosso sistema!")
     exitProcess(0)
 }
