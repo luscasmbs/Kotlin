@@ -1,6 +1,8 @@
 import kotlin.io.print
 import kotlin.system.exitProcess
 import kotlin.text.toInt
+import java.io.PrintStream
+import java.nio.charset.StandardCharsets
 
 data class usuarios(var id: Int, var nome: String, var telefone: String)
 //Lista com todos os usuarios já cadastrados
@@ -8,6 +10,8 @@ var usuarioscadastrados = mutableListOf<usuarios>()
 
 //inicio
 fun main(){
+    //Força o console a rodar uma versão que suporta assentos (UTF)
+    System.setOut(PrintStream(System.`out`, true, StandardCharsets.UTF_8.name()))
     while(true) {
         println("=================================\n " +
                 "SISTEMA DE CONTATOS\n" +
@@ -70,6 +74,9 @@ fun adicionarContato(){
     var nome = readLine()!!
     if (nome == ""){
         println("ERRO: Nome inválido. Digite um nome válido.")
+        return
+    } else if(!nome.all { it.isLetter() || it == ' ' }){
+        println("ERRO: O nome deve conter apenas letras")
     }
 
     println("\nDigite o telefone:")
@@ -223,6 +230,12 @@ fun atualizarContato(){
             println("Digite o novo nome:")
             print("> ")
             var novoNome = readLine()!!
+            if (novoNome == ""){
+                println("ERRO: Nome inválido. Digite um nome válido.")
+                return
+            } else if(!novoNome.all { it.isLetter() || it == ' ' }){
+                println("ERRO: O nome deve conter apenas letras")
+            }
 
             if(usuarioscadastrados.any {it.nome == novoNome}){
                 println("ERRO: Esse nome já está cadastrado.")
@@ -239,12 +252,17 @@ fun atualizarContato(){
             println("Digite o novo telefone:")
             print("> ")
             var novoTelefone = readLine()!!
-            //Vai coletar o telefone novo e vai verificar se já tem um usuário com esse telefone
+            // Remove formatação inserida pelo usuário para validar apenas os dígitos
+            novoTelefone = novoTelefone.filterNot { it == '(' || it == ')' || it == '-' || it == ' ' }
+            if(novoTelefone.length != 11){
+                println("ERRO: Telefone inválido. Digite um telefone com 11 dígitos.")
+                return
+            }
             if(usuarioscadastrados.any {it.telefone == novoTelefone}){
                 println("ERRO: Esse telefone já está cadastrado.")
                 return
             } else {
-                //Vai passar o telefone do usuário para esse novo telefone
+                novoTelefone = construirt(novoTelefone)
                 usuariodoid?.telefone = novoTelefone
                 println("Telefone atualizado com sucesso!")
                 println(
