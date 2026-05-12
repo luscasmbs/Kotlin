@@ -18,14 +18,14 @@ fun main(){
                 "4 - Atualizar contato\n" +
                 "5 - Remover contato\n" +
                 "0 - Sair\n")
-        print("Escolha uma opcao: ")
+        print("Escolha uma opção: ")
         var op = readLine()!!
 
         // Verifica se a entrada é um número inteiro válido
         if (op.toIntOrNull() != null) {
             // Rejeita números fora do intervalo válido (0–5)
             if (op.toInt() > 5 || op.toInt()<0){
-                println("ERRO: Digite um numero entre 0 e 5.")
+                println("ERRO: Digite um número entre 0 e 5.")
                 continue // volta pro topo do while
             } else {
                 // Redireciona para a função correspondente à opção escolhida
@@ -40,7 +40,7 @@ fun main(){
             }
         } else {
             // Entrada não numérica: exibe erro e volta pro topo do while
-            println("ERRO: Digite um numero valido.")
+            println("ERRO: Digite um número válido.")
             continue
         }
     }
@@ -57,11 +57,11 @@ fun adicionarContato(){
 
     // Valida se o ID é um número positivo
     if (id.toIntOrNull() == null ||id.toInt() <=0 ){
-        println("ERRO: ID invalido. Digite um numero maior que 0.")
+        println("ERRO: ID inválido. Digite um número maior que 0.")
         return
         // Impede IDs duplicados
     } else if(usuarioscadastrados.any { it.id == id.toInt() }){
-        println("ERRO: Ja existe um contato com esse ID.")
+        println("ERRO: Já existe um contato com esse ID.")
         return
     }
 
@@ -69,7 +69,7 @@ fun adicionarContato(){
     print("> ")
     var nome = readLine()!!
     if (nome == ""){
-        println("ERRO: Nome invalido. Digite um nome valido.")
+        println("ERRO: Nome inválido. Digite um nome válido.")
     }
 
     println("\nDigite o telefone:")
@@ -81,7 +81,7 @@ fun adicionarContato(){
 
     // Telefone brasileiro deve ter 11 dígitos (DDD + 9 dígitos)
     if(telefone.length != 11){
-        println("ERRO: Telefone invalido. Digite um telefone com 11 digitos.")
+        println("ERRO: Telefone inválido. Digite um telefone com 11 dígitos.")
         return
     } else {
         // Chama a função para o telefone ficar no formato (xx) xxxxx-xxxx
@@ -89,7 +89,7 @@ fun adicionarContato(){
 
         // Impede telefones duplicados na lista
         if(usuarioscadastrados.any { it.telefone == telefone} ){
-            println("ERRO: Ja existe um contato com esse telefone.")
+            println("ERRO: Já existe um contato com esse telefone.")
             return
         }
         nome = nomepadronizado(nome)
@@ -110,7 +110,7 @@ fun buscarContato(){
     var id = readLine()!!
 
     if (id.toIntOrNull() == null){
-        println("ERRO: ID invalido. Digite um numero valido.")
+        println("ERRO: ID inválido. Digite um número válido.")
         return
     }
 
@@ -123,7 +123,7 @@ fun buscarContato(){
                 "Nome: ${usuariodoid.nome}\n" +
                 "Telefone: ${usuariodoid.telefone}")
     } else {
-        println("\nContato nao encontrado.")
+        println("\nContato não encontrado.")
     }
 }
 
@@ -153,12 +153,12 @@ fun atualizarContato(){
     println("=================================\n " +
             "ATUALIZAR CONTATO\n" +
             "=================================\n" +
-            "Digite o ID do contato que voce quer atualizar:")
+            "Digite o ID do contato que você quer atualizar:")
     print("> ")
     var id = readLine()!!
 
     if(id.toIntOrNull() == null){
-        println("ERRO: ID invalido. Digite um numero valido.")
+        println("ERRO: ID inválido. Digite um número válido.")
         return
     }
 
@@ -171,12 +171,12 @@ fun atualizarContato(){
                 "Nome: ${usuariodoid.nome}\n" +
                 "Telefone: ${usuariodoid.telefone}")
     } else {
-        println("\nContato nao encontrado.")
+        println("\nContato não encontrado.")
         return
     }
 
     // Exibe as opções de campo a ser atualizado
-    println("Qual informacao voce quer atualizar?\n" +
+    println("Qual informação você quer atualizar?\n" +
             "1 - ID\n" +
             "2 - Nome\n" +
             "3 - Telefone")
@@ -185,14 +185,14 @@ fun atualizarContato(){
 
     //Garantir que vai ser um número inteiro
     if (escolha.toIntOrNull() == null) {
-        println("ERRO: Digite um valor numerico valido.")
+        println("ERRO: Digite um valor numérico válido.")
         return
     } else if (escolha.toInt() > 3 || escolha.toInt() < 1){
-        println("ERRO: Escolha uma opcao entre 1 e 3.")
+        println("ERRO: Escolha uma opção entre 1 e 3.")
         return
     }  else {
         if (id.toIntOrNull() == null){
-            println("ERRO: ID invalido. Digite um numero valido.")
+            println("ERRO: ID inválido. Digite um número válido.")
             return
         }
 
@@ -203,11 +203,11 @@ fun atualizarContato(){
             var novoId = readLine()!!
 
             if(novoId.toIntOrNull() == null || novoId.toInt() <= 0){
-                println("ERRO: ID invalido. Digite um numero maior que 0.")
+                println("ERRO: ID inválido. Digite um número maior que 0.")
                 return
             }
             if(usuarioscadastrados.any { it.id == novoId.toInt() }){
-                println("ERRO: Ja existe um contato com esse ID.")
+                println("ERRO: Já existe um contato com esse ID.")
                 return
             }
 
@@ -225,7 +225,7 @@ fun atualizarContato(){
             var novoNome = readLine()!!
 
             if(usuarioscadastrados.any {it.nome == novoNome}){
-                println("ERRO: Esse nome ja esta cadastrado.")
+                println("ERRO: Esse nome já está cadastrado.")
                 return
             } else {
                 usuariodoid?.nome = novoNome
@@ -241,7 +241,7 @@ fun atualizarContato(){
             var novoTelefone = readLine()!!
             //Vai coletar o telefone novo e vai verificar se já tem um usuário com esse telefone
             if(usuarioscadastrados.any {it.telefone == novoTelefone}){
-                println("ERRO: Esse telefone ja esta cadastrado.")
+                println("ERRO: Esse telefone já está cadastrado.")
                 return
             } else {
                 //Vai passar o telefone do usuário para esse novo telefone
@@ -262,16 +262,16 @@ fun removerContato(){
     println("=================================\n " +
             "EXCLUIR CONTATO\n" +
             "=================================\n\n" +
-            "Digite o ID do contato que voce quer excluir:")
+            "Digite o ID do contato que você quer excluir:")
     print("> ")
     var id = readLine()!!
 //Vai coletar o id do contato
     if (id.toIntOrNull() == null){
-        println("ERRO: ID invalido. Digite um numero valido.")
+        println("ERRO: ID inválido. Digite um número válido.")
         return
     }
     if(id.toIntOrNull()!!< 1){
-        println("ERRO: ID invalido. Digite um numero maior que 0.")
+        println("ERRO: ID inválido. Digite um número maior que 0.")
         return
     }
 
@@ -283,7 +283,7 @@ fun removerContato(){
                 "ID: ${usuariodoid.id}\n" +
                 "Nome: ${usuariodoid.nome}\n" +
                 "Telefone: ${usuariodoid.telefone}\n\n" +
-                "Voce tem certeza que quer excluir esse contato? (S/N)")
+                "Você tem certeza que quer excluir esse contato? (S/N)")
         var escolha = readLine()!!.lowercase()
         if (escolha == "s"){
             //Se sim, ele vai remover o contato
@@ -291,14 +291,14 @@ fun removerContato(){
             println("Contato removido com sucesso!")
             return
         } else if (escolha == "n") {
-            println("Cancelando a operacao...")
+            println("Cancelando a operação...")
             return
         } else{
-            println("ERRO: Digite apenas S para sim ou N para nao.")
+            println("ERRO: Digite apenas S para sim ou N para não.")
             return
         }
     } else {
-        println("\nContato nao encontrado.")
+        println("\nContato não encontrado.")
     }
 }
 
