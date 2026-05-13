@@ -72,7 +72,7 @@ fun adicionarContato(){
     println("\nDigite o nome:")
     print("> ")
     var nome = readLine()!!
-    if (nome == ""){
+    if (nome.isBlank()){
         println("ERRO: Nome inválido. Digite um nome válido.")
         return
     } else if(!nome.all { it.isLetter() || it == ' ' }){
@@ -88,7 +88,7 @@ fun adicionarContato(){
     telefone = telefone.filterNot { it == '(' || it == ')' || it == '-' || it == ' ' }
 
     // Telefone brasileiro deve ter 11 dígitos (DDD + 9 dígitos)
-    if(telefone.length != 11){
+    if(telefone.length != 11 || !telefone.all { it.isDigit() }){
         println("ERRO: Telefone inválido. Digite um telefone com 11 dígitos.")
         return
     } else {
@@ -231,7 +231,7 @@ fun atualizarContato(){
             println("Digite o novo nome:")
             print("> ")
             var novoNome = readLine()!!
-            if (novoNome == ""){
+            if (novoNome.isBlank()){
                 println("ERRO: Nome inválido. Digite um nome válido.")
                 return
             } else if(!novoNome.all { it.isLetter() || it == ' ' }){
@@ -258,7 +258,7 @@ fun atualizarContato(){
             var novoTelefone = readLine()!!
             // Remove formatação inserida pelo usuário para validar apenas os dígitos
             novoTelefone = novoTelefone.filterNot { it == '(' || it == ')' || it == '-' || it == ' ' }
-            if(novoTelefone.length != 11){
+            if(novoTelefone.length != 11 || !novoTelefone.all { it.isDigit() }){
                 println("ERRO: Telefone inválido. Digite um telefone com 11 dígitos.")
                 return
             }
