@@ -10,7 +10,7 @@ var usuarioscadastrados = mutableListOf<usuarios>()
 
 //inicio
 fun main(){
-    //Força o console a rodar uma versão que suporta assentos (UTF)
+    //Força o console a rodar uma versão que suporta acentos (UTF)
     System.setOut(PrintStream(System.`out`, true, StandardCharsets.UTF_8.name()))
     while(true) {
         println("=================================\n " +
@@ -154,6 +154,11 @@ fun listarContato(){
                 "Telefone: ${usuario.telefone}\n" +
                 "---------------------------------")
     }
+    if (usuarioscadastrados.isEmpty()) {
+        println("A lista está vazia.")
+    }
+    println("\nPressione ENTER para voltar ao menu...")
+    readLine()
 }
 
 // Permite alterar o ID, nome ou telefone de um contato existente
@@ -325,8 +330,11 @@ fun removerContato(){
 }
 
 fun sair(){
-    println("\nEncerrando o sistema...")
-    print("Obrigado por usar o nosso sistema!")
+    println("\n=================================")
+    println("      ENCERRANDO O SISTEMA       ")
+    println("=================================")
+    println("Obrigado por usar o nosso sistema!")
+    println("Até a próxima! 👋")
     exitProcess(0)
 }
 
@@ -355,16 +363,26 @@ fun construirt(t: String): String{
 fun nomepadronizado(nome: String): String{
     var contador = 0
     var nomec = ""
-    for(c in nome){
+    var esp = 0
+    for(c in nome.trim()){
         if (contador == 0){ //Se for a primeira letra do nome, vai transformar em maíuscula
             nomec += c.uppercase()
             contador++
+            esp = 0
         } else if (c == ' '){ //se tiver um espaço, a próxima letra após ele vai ser maíuscula
-            nomec += ' '
             contador = 0
+
+            if (esp > 0){
+                esp++
+            } else {
+                nomec += ' '
+                esp++
+            }
         } else {
-            nomec += c //vai adicionando as outras letras a frase
+            nomec += c.lowercase() //vai adicionando as outras letras a frase
+            esp = 0
+
         }
     }
-    return nomec
+    return nomec.trim()
 }
