@@ -219,12 +219,12 @@ fun atualizarContato(){
                 return
             }
 
-            usuariodoid?.id = novoId.toInt()
+            usuariodoid.id = novoId.toInt()
             println("ID atualizado com sucesso!")
             println("\nContato atualizado: \n\n" +
-                    "ID: ${usuariodoid?.id}\n" +
-                    "Nome: ${usuariodoid?.nome}\n" +
-                    "Telefone: ${usuariodoid?.telefone}")
+                    "ID: ${usuariodoid.id}\n" +
+                    "Nome: ${usuariodoid.nome}\n" +
+                    "Telefone: ${usuariodoid.telefone}")
 
             // Atualiza o nome do contato e rejeitando o mesmo valor já salvo
         } else if (escolha.toInt() == 2){
@@ -245,12 +245,12 @@ fun atualizarContato(){
                 println("ERRO: Esse nome já está cadastrado.")
                 return
             } else {
-                usuariodoid?.nome = novoNome
+                usuariodoid.nome = novoNome
                 println("Nome atualizado com sucesso!")
                 println("\nContato atualizado: \n\n" +
-                        "ID: ${usuariodoid?.id}\n" +
-                        "Nome: ${usuariodoid?.nome}\n" +
-                        "Telefone: ${usuariodoid?.telefone}")
+                        "ID: ${usuariodoid.id}\n" +
+                        "Nome: ${usuariodoid.nome}\n" +
+                        "Telefone: ${usuariodoid.telefone}")
             }
         } else if (escolha.toInt() == 3){
             println("Digite o novo telefone:")
@@ -267,13 +267,13 @@ fun atualizarContato(){
                 println("ERRO: Esse telefone já está cadastrado.")
                 return
             } else {
-                usuariodoid?.telefone = novoTelefone
+                usuariodoid.telefone = novoTelefone
                 println("Telefone atualizado com sucesso!")
                 println(
                     "\nContato atualizado: \n\n" +
-                            "ID: ${usuariodoid?.id}\n" +
-                            "Nome: ${usuariodoid?.nome}\n" +
-                            "Telefone: ${usuariodoid?.telefone}"
+                            "ID: ${usuariodoid.id}\n" +
+                            "Nome: ${usuariodoid.nome}\n" +
+                            "Telefone: ${usuariodoid.telefone}"
                 )
             }
         }
